@@ -173,12 +173,22 @@ h3{font-size:28px;line-height:1.2;margin:10px 0}
 .vpn-warning svg{flex-shrink:0;width:20px;height:20px;color:#d48a00;margin-top:1px}
 .vpn-warning strong{font-weight:800;color:#7a5300}
 
-.offer-tg-row{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+.offer-tg-row{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
 .offer-tg-row .tg-pill{padding:11px 16px 11px 12px;font-size:13px}
 .offer-tg-row .tg-pill svg{width:24px;height:24px}
 
+/* Второстепенная ссылка на ТГ */
+.tg-secondary-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--muted); font-size: 13px; font-weight: 600;
+  padding: 8px 0; transition: color 0.2s;
+}
+.tg-secondary-link:hover { color: var(--g); }
+.tg-secondary-link svg { width: 16px; height: 16px; color: var(--tg); }
+
 .offer-disclosure{margin-top:12px;font-size:10px;line-height:1.6;color:#828879;max-width:450px}
 
+/* ============ ARTWORK (RKO) ============ */
 .artwork{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:440px}
 .artwork:before{content:"";position:absolute;width:460px;height:460px;background:radial-gradient(ellipse at center,#d5eee0 0%,transparent 68%);opacity:.7;left:-20px;top:-10px;z-index:-2}
 .artwork:after{content:"";position:absolute;inset:0;background-image:radial-gradient(#087a5020 .7px,transparent .7px);background-size:17px 17px;-webkit-mask-image:linear-gradient(to left,#0008,transparent 90%);mask-image:linear-gradient(to left,#0008,transparent 90%);z-index:-1}
@@ -255,6 +265,53 @@ h3{font-size:28px;line-height:1.2;margin:10px 0}
 @keyframes dash-arrive{0%{transform:translateY(24px) rotate(2deg);opacity:0}to{transform:rotate(-3deg);opacity:1}}
 @keyframes seal-arrive{0%{opacity:0;transform:rotate(-35deg) scale(.7)}to{opacity:1;transform:rotate(-14deg) scale(1)}}
 
+/* ============ ARTWORK (Дебетовая карта) ============ */
+.gift-badge {
+  position: absolute;
+  top: 35px; right: 25px;
+  background: #fff;
+  color: #b45309;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 800; font-size: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid #fcd34d;
+  z-index: 4;
+  display: flex; align-items: center; gap: 5px;
+  transform: rotate(5deg);
+}
+.debit-card-mockup {
+  position: absolute;
+  width: 300px; height: 180px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: #fff;
+  padding: 22px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+  transform: rotate(-5deg);
+  animation: card-arrive 1s var(--ease);
+  z-index: 2;
+}
+.debit-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.debit-card-title { font-size: 14px; font-weight: 700; letter-spacing: 0.5px; }
+.debit-card-sub { font-size: 10px; opacity: 0.7; margin-top: 2px; }
+.debit-card-center { margin-top: 15px; }
+.debit-card-value { font-size: 38px; font-weight: 800; letter-spacing: -1.5px; line-height: 1; }
+.debit-card-label { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+.debit-card-bottom {
+  display: flex; justify-content: space-between;
+  margin-top: 15px; padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 10px; font-weight: 600;
+}
+.debit-card-chip {
+  width: 30px; height: 22px; border-radius: 4px;
+  background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+  margin-bottom: 15px;
+}
+@keyframes card-arrive{0%{transform:translateY(30px) rotate(-15deg);opacity:0}to{transform:rotate(-5deg);opacity:1}}
+
+/* ============ NAV & OTHER ============ */
 .carousel-arrow{position:absolute;width:46px;height:46px;display:flex;align-items:center;justify-content:center;top:calc(50% - 23px);border:1px solid var(--line);border-radius:50%;z-index:3;background:#fff;box-shadow:0 4px 13px #12402b10;transition:background .2s,transform .2s}
 .carousel-arrow:hover{background:var(--mint);transform:scale(1.06)}
 .arrow-prev{left:-23px}
@@ -371,6 +428,23 @@ h3{font-size:28px;line-height:1.2;margin:10px 0}
 }
 .step h3{font-size:16px;margin:0 0 8px;line-height:1.3;font-weight:750}
 .step p{font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.65;flex-grow:1}
+
+/* Стили для QR-кода в шаге 01 */
+.qr-container {
+  margin: 0 auto 18px;
+  text-align: center;
+}
+.step-qr-img {
+  width: 100%;
+  max-width: 180px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border: 1px solid var(--line);
+  transition: transform 0.3s ease;
+}
+.step-qr-img:hover {
+  transform: scale(1.03);
+}
 
 /* Step 1 TG button */
 .step-tg-btn{
@@ -527,6 +601,9 @@ footer{padding:30px 0 42px;color:#849087;font-size:12px}
   .seal-text strong{font-size:14px}
   .seal-text span{font-size:7px}
   .offer-content h3{font-size:28px}
+  .debit-card-mockup{width:260px;height:160px;padding:18px;}
+  .debit-card-value{font-size:32px;}
+  .gift-badge{top:20px; right:20px;}
 }
 
 @media(max-width:780px){
@@ -572,7 +649,7 @@ footer{padding:30px 0 42px;color:#849087;font-size:12px}
   .details-button:hover{background:var(--mint2);color:var(--gd)}
   .vpn-warning{font-size:12px;padding:12px 14px;max-width:none;gap:9px}
   .vpn-warning svg{width:18px;height:18px}
-  .offer-tg-row .tg-pill{width:100%;justify-content:center;padding:13px 18px;font-size:13px}
+  .offer-tg-row .tg-secondary-link{width:100%;justify-content:center;margin-top:5px;}
 
   .manager-section{padding:10px 0 40px}
   .manager-card{grid-template-columns:1fr;gap:18px;padding:28px 24px;border-radius:22px;text-align:center}
@@ -583,6 +660,13 @@ footer{padding:30px 0 42px;color:#849087;font-size:12px}
 
   .offer-dialog .tg-pill{padding:13px 16px;font-size:12px}
   .offer-dialog .tg-pill svg{width:22px;height:22px}
+  
+  .debit-card-mockup{width:240px;height:150px;padding:16px;transform:rotate(-3deg);}
+  .debit-card-value{font-size:28px;}
+  .debit-card-title{font-size:12px;}
+  .debit-card-label{font-size:10px;}
+  .debit-card-bottom{font-size:9px; margin-top:10px; padding-top:8px;}
+  .gift-badge{top:15px; right:15px; padding:6px 12px; font-size:11px;}
 }
 
 @media(max-width:460px){
@@ -713,6 +797,11 @@ footer{padding:30px 0 42px;color:#849087;font-size:12px}
         <div class="num">01</div>
         <h3>Напишите мне в Telegram</h3>
         <p>Напишите мне в личные сообщения перед оформлением! Я бесплатно расскажу все тонкости, отвечу на ваши вопросы и лично сопровожу весь процесс регистрации от А до Я, чтобы вы получили максимум бонусов и не допустили ошибок.</p>
+        
+        <div class="qr-container">
+          <img src="qr.png" alt="QR код для связи в Telegram" class="step-qr-img">
+        </div>
+        
         <a class="step-tg-btn" href="https://t.me/artur_rko" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
           <span>Telegram @artur_rko</span>
@@ -819,8 +908,8 @@ const TG_ICON = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
 
 const CATEGORIES = [
   { id: "rko",    label: "Регистрация бизнеса и РКО", icon: "🏦" },
-  { id: "mfo",    label: "МФО",               icon: "💸" },
   { id: "debit",  label: "Дебетовые карты",   icon: "💳" },
+  { id: "mfo",    label: "МФО",               icon: "💸" },
   { id: "credit", label: "Кредитные карты",   icon: "💰" }
 ];
 
@@ -829,6 +918,7 @@ const WARN_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 const OFFERS = {
   rko: [{
     id: "alfa-reg-rko",
+    type: "rko",
     featured: true,
     brand: "Альфа-Банк",
     description: "Регистрация бизнеса + РКО",
@@ -859,7 +949,36 @@ const OFFERS = {
     partnerUrl: "https://trk.ppdu.ru/click?uid=346171&oid=2274&erid=2SDnjeEA46e"
   }],
   mfo: [],
-  debit: [],
+  debit: [{
+    id: "psb-debit-5ka",
+    type: "debit",
+    brand: "ПСБ",
+    description: "Самая простая акция с гарантированным подарком",
+    monogram: "П",
+    badge: "🎁 ДОСТУПНО КАЖДОМУ · 3 000 ₽ В ПЯТЁРОЧКУ",
+    title: "Дебетовая карта «Твой Кэшбэк» + Сертификат 3 000 ₽",
+    subtitle: "Получить 3 000 ₽ на еду проще простого: оформите бесплатную карту, купите обычных продуктов от 1 000 ₽ — и сертификат ваш! Без сложных условий.",
+    highlight: "3 000 ₽",
+    highlightLabel: "сертификат в Пятёрочку",
+    thumbnailDetail: "Сертификат 3 000 ₽ за покупку от 1 000 ₽",
+    metrics: [
+      { label: "Подарок в Пятёрочку", value: "3 000 ₽" },
+      { label: "Кэшбэк в супермаркетах", value: "10%" },
+      { label: "Обслуживание навсегда", value: "0 ₽" }
+    ],
+    fullConditions: [
+      "Получить подарок сможет любой: акция максимально простая и не требует выполнений сложных оборотов.",
+      "0 ₽ за выпуск и обслуживание карты навсегда — никаких скрытых списаний и условий.",
+      "Гарантированный электронный сертификат на 3 000 ₽ в «Пятёрочку» приходит на вашу почту за обычные повседневные покупки от 1 000 ₽.",
+      "Приветственный кэшбэк 10% в супермаркетах и на маркетплейсах в первые 6 месяцев.",
+      "До 5% кэшбэка в 3 любимых категориях на выбор каждый месяц.",
+      "Бесплатное снятие наличных в любых банкоматах от 3 000 до 30 000 ₽.",
+      "Участвовать могут граждане РФ от 18 лет, у которых не было активных карт Банка ПСБ последние 6 месяцев (180 дней)."
+    ],
+    disclosure: "Реклама. Партнёрская ссылка. Artur RKO — независимая информационная витрина, не является сайтом банка. ПАО «Банк ПСБ». Лицензия ЦБ РФ №3251.",
+    cta: "Забрать сертификат 3 000 ₽ (оформить карту)",
+    partnerUrl: "https://t.me/artur_rko"
+  }],
   credit: []
 };
 
@@ -884,7 +1003,7 @@ let dragState = null;
 function currentItems() { return OFFERS[state.category] || []; }
 function currentIndex() {
   const items = currentItems();
-  return Math.min(state.positions[state.category] || 0, Math.max(0, items.length - 1));
+  return Math.min(state.positions[state.category] || 0, items.length - 1);
 }
 function isPlaying() {
   return currentItems().length > 1 && !state.paused && !state.interacting && !state.hidden && !REDUCED;
@@ -945,11 +1064,42 @@ function renderTabs() {
 function vpnWarningHTML() {
   return `<p class="vpn-warning">${WARN_ICON}<span><strong>Внимание:</strong> перед переходом по кнопке убедитесь, что у вас выключен VPN. С включённым VPN банк не засчитает заявку!</span></p>`;
 }
+
 function tgPillHTML() {
   return `<a class="tg-pill" href="${TG_URL}" target="_blank" rel="noopener" aria-label="Написать в Telegram @artur_rko">${TG_ICON}<span class="tg-label">Telegram <strong>@artur_rko</strong></span></a>`;
 }
 
 function artworkHTML(o) {
+  if (o.type === "debit") {
+    return `
+      <div class="artwork" aria-hidden="true">
+        <div class="artwork-orbit"></div>
+        <div class="artwork-orbit orbit-two"></div>
+        <div class="artwork-ground"></div>
+        
+        <div class="gift-badge">🎁 3 000 ₽ СЕРТИФИКАТ</div>
+        
+        <div class="debit-card-mockup">
+          <div class="debit-card-top">
+            <div>
+              <div class="debit-card-title">Дебетовая карта МИР</div>
+              <div class="debit-card-sub">ПСБ · Твой Кэшбэк</div>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.7"><path d="M9 9a5 5 0 0 1 0 6m4-9a10 10 0 0 1 0 12M17 3a15 15 0 0 1 0 18"/></svg>
+          </div>
+          <div class="debit-card-center">
+            <div class="debit-card-value">3 000 ₽</div>
+            <div class="debit-card-label">подарок в Пятёрочку</div>
+          </div>
+          <div class="debit-card-bottom">
+            <span>0 ₽ обслуживание</span>
+            <span>10% кэшбэк</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  
   return `
     <div class="artwork" aria-hidden="true">
       <div class="artwork-orbit"></div>
@@ -1006,6 +1156,12 @@ function offerCardHTML(o, dir) {
   const isFeatured = o.featured ? "is-featured" : "";
   const badgeClass = o.featured ? "featured-badge" : "";
   
+  const secondaryTg = `
+    <a class="tg-secondary-link" href="${TG_URL}" target="_blank" rel="noopener">
+      ${TG_ICON} Задать вопрос в ЛС
+    </a>
+  `;
+  
   return `
     <article class="offer-card ${isFeatured} ${dir < 0 ? "from-left" : "from-right"}" aria-labelledby="title-${o.id}">
       <div class="offer-content">
@@ -1039,7 +1195,7 @@ function offerCardHTML(o, dir) {
           </button>
         </div>
         ${vpnWarningHTML()}
-        <div class="offer-tg-row">${tgPillHTML()}</div>
+        <div class="offer-tg-row">${secondaryTg}</div>
         <p class="offer-disclosure">${esc(o.disclosure)}</p>
       </div>
       ${artworkHTML(o)}
