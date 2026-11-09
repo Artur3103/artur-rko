@@ -26,9 +26,9 @@
   --ink: #f9fafb;
   --muted: #9ca3af;
   --line: #374151;
-  --g: #facc15; /* Базовое золото */
-  --gd: #1f2937; /* Графит для текста на золоте */
-  --mint: #1f2937; /* Темно-серый для плашек */
+  --g: #facc15;
+  --gd: #1f2937;
+  --mint: #1f2937;
   --mint2: #374151;
   --tg: #229ED9;
 }
@@ -648,8 +648,82 @@ footer{padding:30px 0 42px;color:var(--muted);font-size:12px}
   html{scroll-behavior:auto}
   *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* ===== ФИКС ЧИТАЕМОСТИ ===== */
+
+/* (1) Бейдж условий — в тёмной теме текст совпадал с фоном */
+[data-theme="dark"] .offer-badge:not(.featured-badge) {
+  background: var(--mint2);
+  color: var(--g);
+  border: 1px solid #facc1540;
+}
+[data-theme="dark"] .offer-badge:not(.featured-badge):before {
+  background: var(--g);
+  box-shadow: 0 0 0 3px #00000040;
+}
+
+/* (2) Флагман-бейдж — в светлой теме текст был тёмно-зелёным на зелёном */
+.offer-badge.featured-badge { color: #fff; }
+
+/* (3) Плашка «онлайн» на дашборде */
+.dash-pill { color: #fff; }
+
+/* (4) Галочка на активной миниатюре */
+.thumbnail-tick { color: #fff; }
+
+/* (5) Кнопка менеджера */
+.manager-btn,
+.manager-btn svg { color: #fff; }
+
+/* (6) Бейдж «ВАЖНО» на шаге 02 */
+.step-badge-critical { color: #fff; }
+
+/* (7) Кнопка CTA в блоке «Готовы начать бизнес?» */
+.cta .btn { color: #fff; }
+
+/* (8) Иконка чата в кнопке обратной связи — невидима в тёмной */
+[data-theme="dark"] .feedback-btn svg { color: var(--g); }
+
+/* Бонус: длинные бейджи переносятся, а не вылезают */
+.offer-badge {
+  white-space: normal;
+  line-height: 1.35;
+  max-width: 100%;
+}
+
+/* ===== НОВОЕ: иконка Telegram внутри кнопки ===== */
+.btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* ===== НОВОЕ: плашка «Оформление через менеджера» ===== */
+.manager-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  background: var(--mint);
+  border: 1px solid var(--mint2);
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--gd);
+  max-width: 520px;
+}
+[data-theme="dark"] .manager-note {
+  color: var(--g);
+  background: var(--mint);
+  border-color: rgba(250, 204, 21, 0.35);
+}
+.manager-note svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--g);
+  margin-top: 1px;
+}
+.manager-note strong { font-weight: 800; }
 </style>
-</head>
+
 <body>
 
 <header>
@@ -874,6 +948,7 @@ const OFFERS = {
     { 
       id: "alfa-reg", 
       type: "rko", 
+      viaManager: true,
       brand: "Альфа-Банк", 
       description: "Регистрация бизнеса + РКО", 
       monogram: "А", 
@@ -901,9 +976,9 @@ const OFFERS = {
         "Бесплатный Торговый эквайринг: аренда терминалов без платы, зачисление выручки день-в-день и ставка от 1%.", 
         "Встроенный сервис «Индикатор риска»: автоматическая проверка операций для предотвращения блокировок по 115-ФЗ." 
       ], 
-      disclosure: "Реклама. Партнёрская ссылка. Artur RKO — независимая информационная витрина.", 
-      cta: "Перейти к предложению", 
-      partnerUrl: "https://trk.ppdu.ru/click?uid=346171&oid=2274&erid=2SDnjeEA46e" 
+      disclosure: "Реклама. Artur RKO — независимая информационная витрина. Оформление — через персонального менеджера.", 
+      cta: "Связаться с менеджером", 
+      partnerUrl: "https://t.me/artur_rko" 
     }, 
     { 
       id: "ozon-reg", 
@@ -946,6 +1021,7 @@ const OFFERS = {
       id: "alfa-rko", 
       type: "rko", 
       featured: true, 
+      viaManager: true,
       brand: "Альфа-Банк", 
       description: "РКО для действующего бизнеса", 
       monogram: "А", 
@@ -973,9 +1049,9 @@ const OFFERS = {
         "Встроенный сервис «Индикатор риска» для защиты от блокировок счёта и проверок по 115-ФЗ.", 
         "Круглосуточная отправка платежей 24/7 внутри Альфа-Банка." 
       ], 
-      disclosure: "Реклама. Партнёрская ссылка. Artur RKO — независимая информационная витрина.", 
-      cta: "Открыть РКО", 
-      partnerUrl: "https://trk.ppdu.ru/click?uid=346171&oid=1030&erid=2SDnjeBPX3q" 
+      disclosure: "Реклама. Artur RKO — независимая информационная витрина. Оформление — через персонального менеджера.", 
+      cta: "Связаться с менеджером", 
+      partnerUrl: "https://t.me/artur_rko" 
     }, 
     { 
       id: "vtb-rko", 
@@ -1055,7 +1131,7 @@ const moonIcon = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
 function setTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
-  themeIcon.innerHTML = theme === "light" ? moonIcon : sunIcon; // Показываем луну, если светло (чтобы переключить на темную)
+  themeIcon.innerHTML = theme === "light" ? moonIcon : sunIcon;
 }
 
 const savedTheme = localStorage.getItem("theme") || "light";
@@ -1066,7 +1142,7 @@ themeToggle.addEventListener("click", () => {
   setTheme(currentTheme === "light" ? "dark" : "light");
 });
 /* ============================================================= */
-
+  
 const AUTO_DELAY = 8000;
 const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const state = {
@@ -1245,12 +1321,24 @@ function artworkHTML(o) {
 function offerCardHTML(o, dir) {
   const isFeatured = o.featured ? "is-featured" : "";
   const badgeClass = o.featured ? "featured-badge" : "";
-  
-  const secondaryTg = `
+  const viaManager = !!o.viaManager;
+
+  const secondaryTg = viaManager ? "" : `
     <a class="tg-secondary-link" href="${TG_URL}" target="_blank" rel="noopener">
       ${TG_ICON} Задать вопрос в ЛС
     </a>
   `;
+
+  const managerNote = viaManager ? `
+    <div class="manager-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <span><strong>Оформляется напрямую через персонального менеджера.</strong> Сопровождение на всех этапах, без посредников и лишних звонков.</span>
+    </div>
+  ` : "";
 
   const ozonLink = o.id === "ozon-reg" ? `
     <button class="ozon-link-btn" data-switch-to-rko>
@@ -1274,6 +1362,7 @@ function offerCardHTML(o, dir) {
         <h3 id="title-${o.id}">${esc(o.title)}</h3>
         <p class="offer-subtitle">${esc(o.subtitle)}</p>
         
+        ${managerNote}
         ${ozonLink}
 
         <dl class="offer-metrics">
@@ -1286,15 +1375,15 @@ function offerCardHTML(o, dir) {
           `).join("")}
         </dl>
         <div class="offer-actions">
-          <a class="btn" href="${esc(o.partnerUrl)}" target="_blank" rel="sponsored nofollow noopener">
-            ${esc(o.cta)} <span aria-hidden="true">↗</span>
+          <a class="btn" href="${esc(o.partnerUrl)}" target="_blank" rel="${viaManager ? "noopener" : "sponsored nofollow noopener"}">
+            ${viaManager ? TG_ICON : ""} ${esc(o.cta)} ${viaManager ? "" : `<span aria-hidden="true">↗</span>`}
           </a>
           <button type="button" class="details-button" data-details="${esc(o.id)}">
             Подробнее <span aria-hidden="true">→</span>
           </button>
         </div>
-        ${vpnWarningHTML()}
-        <div class="offer-tg-row">${secondaryTg}</div>
+        ${viaManager ? "" : vpnWarningHTML()}
+        ${secondaryTg ? `<div class="offer-tg-row">${secondaryTg}</div>` : ""}
         <p class="offer-disclosure">${esc(o.disclosure)}</p>
       </div>
       ${artworkHTML(o)}
@@ -1482,6 +1571,7 @@ function announce(text) { if (statusEl) statusEl.textContent = text; }
 
 function openDialog(o) {
   state.paused = true;
+  const viaManager = !!o.viaManager;
   dialogEl.innerHTML = `
     <div class="dialog-content">
       <button type="button" class="dialog-close" aria-label="Закрыть подробные условия" data-close>
@@ -1499,13 +1589,13 @@ function openDialog(o) {
       </ul>
       <p class="demo-note">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z"/><path d="m8 12 3 3 5-6"/></svg>
-        Реклама. Партнёрская ссылка. Artur RKO — независимая витрина, не является сайтом банка.
+        Реклама. Artur RKO — независимая витрина, не является сайтом банка.
       </p>
-      ${vpnWarningHTML()}
-      <a class="btn" href="${esc(o.partnerUrl)}" target="_blank" rel="sponsored nofollow noopener" style="margin-top:16px">
-        ${esc(o.cta)} <span aria-hidden="true">↗</span>
+      ${viaManager ? "" : vpnWarningHTML()}
+      <a class="btn" href="${esc(o.partnerUrl)}" target="_blank" rel="${viaManager ? "noopener" : "sponsored nofollow noopener"}" style="margin-top:16px">
+        ${viaManager ? TG_ICON : ""} ${esc(o.cta)} ${viaManager ? "" : `<span aria-hidden="true">↗</span>`}
       </a>
-      ${tgPillHTML()}
+      ${viaManager ? "" : tgPillHTML()}
     </div>
   `;
   dialogEl.querySelector("[data-close]").addEventListener("click", closeDialog);
