@@ -722,6 +722,15 @@ footer{padding:30px 0 42px;color:var(--muted);font-size:12px}
   margin-top: 1px;
 }
 .manager-note strong { font-weight: 800; }
+  /* Фикс невидимой кнопки Ozon в тёмной теме */
+[data-theme="dark"] .ozon-link-btn {
+  background: var(--mint2);
+  color: var(--g);
+  border-color: var(--g);
+}
+[data-theme="dark"] .ozon-link-btn:hover {
+  background: var(--line);
+}
 </style>
 
 <body>
